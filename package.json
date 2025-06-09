@@ -1,0 +1,26 @@
+{
+  "name": "gn-chatbot",
+  "version": "1.0.0",
+  "description": "A chatbot for Growth Nation, trained on 100s of Leo Fery's videos, docs, and coaching calls.",
+  "license": "ISC",
+  "author": "Lorenz Krinner",
+  "type": "module",
+  "main": "dist/app.js",
+  "scripts": {
+    "start": "tsx src/app.ts",
+    "ngrok": "ngrok http 3000 --domain platypus-cheerful-zebra.ngrok-free.app"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "twilio": "^5.7.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^22.15.30",
+    "dotenv": "^16.5.0",
+    "eslint": "^9.28.0",
+    "prettier": "^3.5.3",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  }
+}
