@@ -1,5 +1,8 @@
 import express, { Request, Response, type Router } from "express";
-import { sendResponse } from "../service/twilio.js";
+import { sendResponse } from "../lib/twilio.js";
+import { storeMessage } from "../lib/supabase.js";
+import { saveNewUser, updateUser } from "../lib/auth.js";
+import { getOpenAIResponse } from "../lib/openai.js";
 
 const router = express.Router();
 
@@ -17,5 +20,14 @@ export const webhookHandler: Router = router.post("/", async(req: Request, res: 
 
   console.log(`Received message: '${message}' from ${senderName} @ ${senderNumber}`);
 
-  sendResponse(senderNumber);
+  await storeMessage(senderNumber, message);
+
+  // showTypingIndicator(message.id);
+
+  await saveNewUser(req.body);
+  const responseToUser = await getOpenAIResponse(senderNumber, message);
+  await sendResponse(senderNumber, message);
+  await updateUser(senderNumber);
+
+  res.sendStatus(200);
 })

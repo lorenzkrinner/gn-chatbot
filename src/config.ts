@@ -2,7 +2,6 @@ import dotenv from "dotenv";
 import path from "path";
 
 const env_path = path.resolve(import.meta.dirname, "../.env.local");
-console.log(env_path);
 dotenv.config({ path: env_path });
 
 export const accountSid: string | undefined = process.env.TWILIO_ACCOUNT_SID;
