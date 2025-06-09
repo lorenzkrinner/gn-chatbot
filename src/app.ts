@@ -1,5 +1,5 @@
 import express from "express";
-import { webhookHandler, webhookVerifier } from "./routes/webhook";
+import { webhookHandler, webhookVerifier } from "./routes/webhook.js";
 
 const app = express();
 const port = 3000;

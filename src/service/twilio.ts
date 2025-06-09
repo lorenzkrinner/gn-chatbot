@@ -1,16 +1,32 @@
 import twilio from "twilio";
+import { accountSid, twilioAuthToken } from "../config.js";
+import { response } from "express";
 
-const accountSid: string | undefined = process.env.TWILIO_ACCOUNT_SID!;
-const authToken: string | undefined = process.env.TWILIO_AUTH_TOKE;
+const client = twilio(accountSid, twilioAuthToken);
 
-const client = twilio(accountSid, authToken);
+const sender = process.env.TWILIO_SENDER;
 
-async function createMessage(sender: string, receiver: string) {
-  const message = await client.messages.create({
-    body: "Hello, there!",
-    from: `whatsapp: ${sender}`,
-    to: `whatsapp: ${receiver}`
-  });
+export async function sendResponse(to: string) {
+  console.log(to);
+  console.log(sender);
+  try {
+    const { status, errorCode, body, errorMessage } = await client.messages.create({
+      body: "Hello, there!",
+      from: `whatsapp:+${sender}`,
+      to: `whatsapp:+${to}`
+    });
 
-  console.log("Message sent: ", message.body);
+    if (errorCode && errorMessage) console.log(errorCode, errorMessage);
+
+
+    console.log("Response sent: ", body);
+
+    return;
+  } catch (error) {
+    console.error(error);
+    return Response.json(
+      { message: error },
+      { status: 500 }
+    )
+  }
 }
