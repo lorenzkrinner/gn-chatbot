@@ -14,10 +14,11 @@ export async function getChunks(queryEmbedding: number[]) {
         { status: 500 }
       );
     }
+
+    console.log("Chunks retrieved: ", chunks.length);
     
-    console.log("Chunks retrieved: ", chunks);
     Response.json(
-      { message: `Chunks retrieved: ${chunks}`},
+      { message: `Chunks retrieved: ${chunks.length}`},
       { status: 200 }
     );
     return chunks;

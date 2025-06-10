@@ -1,18 +1,21 @@
 import express from "express";
-import { webhookHandler, webhookVerifier } from "./routes/webhook.js";
+import router from "./routes/webhook.js";
+import serverless from "serverless-http";
 
 const app = express();
 const port = 3000;
 
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.use("/webhook", webhookHandler);
-app.use("/webhook", webhookVerifier);
+app.use("/webhook", router);
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
+
+export default serverless(app);

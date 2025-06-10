@@ -6,13 +6,14 @@ import { getOpenAIResponse } from "../lib/openai.js";
 
 const router = express.Router();
 
-export const webhookVerifier: Router = router.get("/", (req: Request, res: Response) => {
-  console.log(req.body);
+router.get("/", (req: Request, res: Response) => {
+  console.log("GET /webhook fired");
+  res.send("Webhook verifier");
   // Verification if necessary
 });
 
-export const webhookHandler: Router = router.post("/", async(req: Request, res: Response) => {
-  console.log("Webhook fired.");
+router.post("/", async(req: Request, res: Response) => {
+  console.log("POST /webhook fired.");
   const body = req.body;
 
   const senderNumber: string = body.From.split(":", 2)[1].split("+", 2)[1];
@@ -29,4 +30,6 @@ export const webhookHandler: Router = router.post("/", async(req: Request, res: 
   await updateUser(senderNumber);
 
   res.sendStatus(200);
-})
+});
+
+export default router as Router;
