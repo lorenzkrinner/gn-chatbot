@@ -9,9 +9,16 @@ export async function getChunks(queryEmbedding: number[]) {
 
     if (error) {
       console.error("Supabase vector search error:", error.message);
-    } else {
-      console.log("Retrieved matching chunks from supabase:", chunks.length);
+      return Response.json(
+        { message: error },
+        { status: 500 }
+      );
     }
+    
+    Response.json(
+      { message: `Chunks retrieved: ${chunks}`},
+      { status: 200 }
+    );
     return chunks;
 }
 
@@ -30,11 +37,11 @@ export async function retrievePreviousMessages(phone: string, count: number) {
     .order("sent_at", { ascending: false })
     .limit(count);
   if (!response.data) {
-    console.log("No previous messages detected.")
+    console.log("No previous messages detected.");
     return null
   }
   const messages = response.data.map((row, i) => `(${i + 1}) ${row.content}`).join("/n")
-  console.log(`Previous messages retrieved: ${messages}`)
+  console.log(`Previous messages retrieved: ${messages}`);
   return messages;
 }
 
