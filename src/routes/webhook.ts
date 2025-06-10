@@ -1,4 +1,5 @@
-import express, { Request, Response, type Router } from "express";
+import express from "express";
+import type { Request, Response } from "express";
 import { sendResponse } from "../lib/twilio.js";
 import { storeMessage } from "../lib/supabase.js";
 import { saveNewUser, updateUser } from "../lib/auth.js";
@@ -6,13 +7,13 @@ import { getOpenAIResponse } from "../lib/openai.js";
 
 const router = express.Router();
 
-router.get("/", (req: Request, res: Response) => {
+router.get("/", (req: Request ,res: Response) => {
   console.log("GET /webhook fired");
   res.status(200).send("Webhook verifier OK");
   return;
 });
 
-router.post("/", async(req: Request, res: Response) => {
+router.post("/", async (req: Request, res: Response) => {
   console.log("POST /webhook fired.");
   const body = req.body;
 
