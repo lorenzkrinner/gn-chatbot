@@ -14,24 +14,28 @@ router.get("/", (req: Request ,res: Response) => {
 });
 
 router.post("/", async (req: Request, res: Response) => {
-  console.log("POST /webhook fired.");
-  const body = req.body;
+  try {
+    console.log("POST /webhook fired.");
+    const body = req.body;
 
-  const senderNumber: string = body.From.split(":", 2)[1].split("+", 2)[1];
-  const senderName: string = body.ProfileName;
-  const message : string = body.Body;
+    const senderNumber: string = body.From.split(":", 2)[1].split("+", 2)[1];
+    const senderName: string = body.ProfileName;
+    const message : string = body.Body;
 
-  await storeMessage(senderNumber, message);
+    await storeMessage(senderNumber, message);
 
-  // showTypingIndicator(message.id);
+    // showTypingIndicator(message.id);
 
-  await saveNewUser(senderNumber, senderName);
-  const aiResponse: string = await getOpenAIResponse(senderNumber, message);
-  await sendResponse(senderNumber, aiResponse);
-  await updateUser(senderNumber);
+    await saveNewUser(senderNumber, senderName);
+    const aiResponse: string = await getOpenAIResponse(senderNumber, message);
+    await sendResponse(senderNumber, aiResponse);
+    await updateUser(senderNumber);
 
-  res.status(200).json({ message: "Response succesfully sent" });
-  return;
+    res.status(200).json({ message: "Response succesfully sent" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error });
+  }
 });
 
 export default router;
