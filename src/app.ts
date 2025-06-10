@@ -1,5 +1,5 @@
 import express from "express";
-import router from "./routes/webhook.js";
+import webhookRouter from "./routes/webhook.js";
 import serverless from "serverless-http";
 
 const app = express();
@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.use("/webhook", router);
+app.use("/webhook", webhookRouter);
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);

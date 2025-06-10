@@ -8,7 +8,7 @@
   "main": "dist/app.js",
   "scripts": {
     "dev": "tsx watch src/app.ts",
-    "start": "node dist/app.js",
+    "start": "node dist/api/webhook.js",
     "ngrok": "ngrok http 3000 --domain platypus-cheerful-zebra.ngrok-free.app",
     "build": "npx tsc"
   },
