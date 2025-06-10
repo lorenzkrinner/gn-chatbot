@@ -31,7 +31,6 @@ app.post("/", async (req: Request, res: Response) => {
   try {
     const body = req.body;
 
-    // Validate required fields
     if (!body.From || !body.Body) {
       console.error("Missing required fields in webhook body");
       res.status(400).json({ error: "Missing required fields" });
