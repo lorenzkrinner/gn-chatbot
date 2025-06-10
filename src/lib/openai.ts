@@ -1,9 +1,6 @@
-import OpenAI from "openai";
-import { openaiApiKey } from "../config.js";
 import { getInstructions } from "./instructions.js";
 import { getChunks, retrievePreviousMessages } from "./supabase.js";
-
-export const openai = new OpenAI({ apiKey: openaiApiKey });
+import { openai } from "../config.js";
 
 export async function returnEmbedding(message: string) {
   if (!message || typeof message !== "string") {
@@ -44,7 +41,7 @@ export async function getOpenAIResponse(phone: string, message: string) {
       ],
     });
     const message_content = response.choices[0].message.content
-    return message_content;
+    return message_content as string;
   } catch (error) {
     console.error("OpenAI API error:", error);
     return "There have been internal server errors. Please try again."

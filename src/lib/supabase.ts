@@ -1,7 +1,4 @@
-import { createClient } from "@supabase/supabase-js";
-import { supabaseUrl, supabaseKey } from "../config.js";
-
-export const supabase = createClient(supabaseUrl, supabaseKey);
+import { supabase } from "../config.js";
 
 export async function getChunks(queryEmbedding: number[]) {
   const { data: chunks, error } = await supabase.rpc("match_documents", {

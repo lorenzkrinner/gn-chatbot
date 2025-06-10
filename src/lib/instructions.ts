@@ -1,5 +1,8 @@
 import fs from "fs";
+import path from "path";
 
-export function getInstructions<String>() {
-  return fs.readFileSync("../../data/instructions.txt", "utf8");
+const instructionsPath = path.resolve(import.meta.dirname, "../../data/instructions.txt");
+
+export function getInstructions() {
+  return fs.readFileSync(instructionsPath, "utf8");
 };

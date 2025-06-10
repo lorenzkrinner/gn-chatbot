@@ -18,15 +18,13 @@ export const webhookHandler: Router = router.post("/", async(req: Request, res: 
   const senderName: string = body.ProfileName;
   const message : string = body.Body;
 
-  console.log(`Received message: '${message}' from ${senderName} @ ${senderNumber}`);
-
   await storeMessage(senderNumber, message);
 
   // showTypingIndicator(message.id);
 
-  await saveNewUser(req.body);
-  const responseToUser = await getOpenAIResponse(senderNumber, message);
-  await sendResponse(senderNumber, message);
+  await saveNewUser(senderNumber, senderName);
+  const aiResponse: string = await getOpenAIResponse(senderNumber, message);
+  await sendResponse(senderNumber, aiResponse);
   await updateUser(senderNumber);
 
   res.sendStatus(200);

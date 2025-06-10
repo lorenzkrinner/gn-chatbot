@@ -7,10 +7,8 @@ const client = twilio(accountSid, twilioAuthToken);
 const sender = process.env.TWILIO_SENDER;
 
 export async function sendResponse(to: string, message: string) {
-  console.log(to);
-  console.log(sender);
   try {
-    const { status, errorCode, body, errorMessage } = await client.messages.create({
+    const { errorCode, body, errorMessage } = await client.messages.create({
       body: message,
       from: `whatsapp:+${sender}`,
       to: `whatsapp:+${to}`
