@@ -7,6 +7,7 @@
   "type": "module",
   "main": "dist/app.js",
   "scripts": {
+    "vercel dev": "npx vercel dev --listen 3000",
     "dev": "tsx watch src/app.ts",
     "start": "node dist/api/webhook.js",
     "ngrok": "ngrok http 3000 --domain platypus-cheerful-zebra.ngrok-free.app",
@@ -16,6 +17,7 @@
     "@supabase/supabase-js": "^2.50.0",
     "express": "^5.1.0",
     "openai": "^5.2.0",
+    "serverless-http": "^3.2.0",
     "ts-node-dev": "^2.0.0",
     "twilio": "^5.7.0"
   },
