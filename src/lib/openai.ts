@@ -1,11 +1,10 @@
 import { getInstructions } from "./instructions.js";
 import { getChunks, retrievePreviousMessages } from "./supabase.js";
 import { openai } from "../config.js";
-import { response } from "express";
 
 export async function returnEmbedding(message: string) {
   if (!message || typeof message !== "string") {
-    throw new Error("Invalid message for embedding: " + message);
+    console.error("Invalid message for embedding: ", message);
   }
 
   const embeddedQuery = await openai.embeddings.create({
@@ -45,8 +44,6 @@ export async function getOpenAIResponse(phone: string, message: string) {
     return message_content as string;
   } catch (error) {
     console.error("OpenAI API error:", error);
-    response.sendStatus(500);
-    response.render("error", { error: error });
-    return "There have been internal server errors. Please try again."
+    return "Sorry, but we encountered a server issue, please try again.";
   }
 }

@@ -27,8 +27,6 @@ const CHUNK_CHAR_LENGTH = 1000;
       console.log("Chunk stored");
     }
   }
-
-  console.log("Done uploading all chunks to Supabase.")
 })();
 
 function splitIntoChunks(text: string, chunkSize: number) {

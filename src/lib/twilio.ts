@@ -1,6 +1,5 @@
 import twilio from "twilio";
 import { accountSid, twilioAuthToken } from "../config.js";
-import { response } from "express";
 
 const client = twilio(accountSid, twilioAuthToken);
 
@@ -15,9 +14,6 @@ export async function sendResponse(to: string, message: string) {
     });
 
     if (errorCode && errorMessage) console.log(errorCode, errorMessage);
-
-
-    console.log("Response sent: ", body);
 
     return;
   } catch (error) {

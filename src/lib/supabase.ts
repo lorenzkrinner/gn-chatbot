@@ -15,6 +15,7 @@ export async function getChunks(queryEmbedding: number[]) {
       );
     }
     
+    console.log("Chunks retrieved: ", chunks);
     Response.json(
       { message: `Chunks retrieved: ${chunks}`},
       { status: 200 }

@@ -12,6 +12,7 @@ export const webhookVerifier: Router = router.get("/", (req: Request, res: Respo
 });
 
 export const webhookHandler: Router = router.post("/", async(req: Request, res: Response) => {
+  console.log("Webhook fired.");
   const body = req.body;
 
   const senderNumber: string = body.From.split(":", 2)[1].split("+", 2)[1];

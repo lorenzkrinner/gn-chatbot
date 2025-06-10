@@ -60,6 +60,7 @@ export async function updateUser(phone: string) {
   }).eq("user_phone", phone)
 
   if (error) {
+    console.error(`Error updating user data: ${error}`)
     return Response.json(
       { message: `Error updating user data: ${error}` },
       { status: 500 }
