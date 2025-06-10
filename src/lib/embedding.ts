@@ -1,6 +1,6 @@
 import fs from "fs";
-import { openai } from "./openai.js";
-import { supabase } from "./supabase.js";
+import { openai } from "../config.js";
+import { supabase } from "../config.js";
 
 const FILE_PATH = "../../data/raw_transcripts.txt";
 const FILE_NAME = "raw-transcripts.txt";

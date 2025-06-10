@@ -7,13 +7,16 @@
   "type": "module",
   "main": "dist/app.js",
   "scripts": {
-    "start": "tsx watch src/app.ts",
-    "ngrok": "ngrok http 3000 --domain platypus-cheerful-zebra.ngrok-free.app"
+    "dev": "tsx watch src/app.ts",
+    "start": "node dist/index.js",
+    "ngrok": "ngrok http 3000 --domain platypus-cheerful-zebra.ngrok-free.app",
+    "build": "npx tsc"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.50.0",
     "express": "^5.1.0",
     "openai": "^5.2.0",
+    "ts-node-dev": "^2.0.0",
     "twilio": "^5.7.0"
   },
   "devDependencies": {
