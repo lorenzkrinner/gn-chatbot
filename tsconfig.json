@@ -4,7 +4,7 @@
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": ".",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -12,8 +12,7 @@
   },
   "include": [
     "src/**/*.ts",
-    "src/api/**/*.ts",
-    "src/routes/**/*.ts"
+    "api/**/*.ts",
   ],
   "exclude": [
     "src/**/*.spec.ts",

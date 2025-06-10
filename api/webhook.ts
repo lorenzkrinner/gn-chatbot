@@ -1,5 +1,5 @@
 import express from "express";
-import webhookRouter from "../routes/webhook.js";
+import webhookRouter from "../src/routes/webhook.js";
 import serverless from "serverless-http";
 
 const app = express();
