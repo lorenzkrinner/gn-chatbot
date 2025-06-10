@@ -17,9 +17,9 @@ export async function returnEmbedding(message: string) {
 
 export async function getOpenAIResponse(phone: string, message: string) {
   const count = 10
-  const instructions: string = getInstructions()
-  const embeddedQuery = await returnEmbedding(message)
-  const chunks = await getChunks(embeddedQuery)
+  const instructions: string = getInstructions();
+  const embeddedQuery = await returnEmbedding(message);
+  const chunks = await getChunks(embeddedQuery);
   const previousMessages = await retrievePreviousMessages(phone, count)
 
   try {

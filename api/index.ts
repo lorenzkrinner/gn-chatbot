@@ -1,4 +1,5 @@
 import express, { type Response, type Request, type NextFunction } from "express";
+import cors from "cors";
 import serverless from "serverless-http";
 
 import { sendResponse } from "../src/lib/twilio.js";
@@ -6,28 +7,28 @@ import { storeMessage } from "../src/lib/supabase.js";
 import { saveNewUser, updateUser } from "../src/lib/auth.js";
 import { getOpenAIResponse } from "../src/lib/openai.js";
 
-const app = express();
+export const app = express();
+
+app.use(cors({
+  origin: ["http://localhost:3001"]
+}));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-console.log("Middleware start!");
-
-app.use("/", (req, res, next) => {
-  console.log("Request body:", req.body);
-  console.log(`${req.method} ${req.url}`);
-  next();
+app.get("/", (req, res) => {
+  res.send("Growth Nation Chatbot")
 });
 
-app.get("/", (req: Request, res: Response) => {
-  console.log("GET /webhook fired");
-  res.status(200).send("Webhook verifier OK");
+app.get("/webhook", (req: Request, res: Response) => {
+  console.log("GET /webhook");
+  res.status(200).json({ success: true });
   return;
 });
 
-app.post("/", async (req: Request, res: Response) => {
-  console.log("POST /webhook fired.");
-  
+app.post("/webhook", async (req: Request, res: Response) => {
+  console.log("POST /webhook");
+
   try {
     const body = req.body;
 
@@ -80,9 +81,6 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   }
 });
 
-app.use("*", (req: Request, res: Response) => {
-  res.status(404).json({ error: "Route not found" });
+app.listen(4000,() => {
+  console.log("Server ready on port 4000.");
 });
-
-const handler = serverless(app);
-export default handler;
