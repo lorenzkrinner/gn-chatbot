@@ -18,9 +18,13 @@ export async function returnEmbedding(message: string) {
 export async function getOpenAIResponse(phone: string, message: string) {
   const count = 10
   const instructions: string = getInstructions();
+  console.log("Instructions retrieved");
   const embeddedQuery = await returnEmbedding(message);
+  console.log("Embedding retrieved");
   const chunks = await getChunks(embeddedQuery);
-  const previousMessages = await retrievePreviousMessages(phone, count)
+  console.log("Retrieved chunks");
+  const previousMessages = await retrievePreviousMessages(phone, count);
+  console.log("Previous messages retrieved");
 
   try {
     const response = await openai.chat.completions.create({
@@ -41,6 +45,7 @@ export async function getOpenAIResponse(phone: string, message: string) {
       ],
     });
     const message_content = response.choices[0].message.content
+    console.log("Message generated");
     return message_content as string;
   } catch (error) {
     console.error("OpenAI API error:", error);

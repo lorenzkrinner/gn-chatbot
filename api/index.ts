@@ -16,11 +16,12 @@ app.use(cors({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Growth Nation Chatbot")
+app.get("/", async (req, res) => {
+  console.log("GET /");
+  res.status(200).json({ message: "Growth Nation's Chatbot" });
 });
 
-app.get("/webhook", (req: Request, res: Response) => {
+app.get("/webhook", async (req: Request, res: Response) => {
   console.log("GET /webhook");
   res.status(200).json({ success: true });
   return;
@@ -28,6 +29,7 @@ app.get("/webhook", (req: Request, res: Response) => {
 
 app.post("/webhook", async (req: Request, res: Response) => {
   console.log("POST /webhook");
+  res.status(200).json({ message: "Webhook received " });
 
   try {
     const body = req.body;
