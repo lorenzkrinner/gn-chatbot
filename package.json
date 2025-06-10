@@ -16,7 +16,6 @@
     "@supabase/supabase-js": "^2.50.0",
     "express": "^5.1.0",
     "openai": "^5.2.0",
-    "serverless-http": "^3.2.0",
     "ts-node-dev": "^2.0.0",
     "twilio": "^5.7.0"
   },

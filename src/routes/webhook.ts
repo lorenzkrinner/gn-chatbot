@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get("/", (req: Request, res: Response) => {
   console.log("GET /webhook fired");
-  res.send("Webhook verifier");
+  res.send("Webhook verifier OK");
   // Verification if necessary
 });
 
