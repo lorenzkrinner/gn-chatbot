@@ -14,8 +14,6 @@ export async function getChunks(queryEmbedding: number[]) {
         { status: 500 }
       );
     }
-
-    console.log("Chunks retrieved: ", chunks.length);
     
     Response.json(
       { message: `Chunks retrieved: ${chunks.length}`},
@@ -39,11 +37,9 @@ export async function retrievePreviousMessages(phone: string, count: number) {
     .order("sent_at", { ascending: false })
     .limit(count);
   if (!response.data) {
-    console.log("No previous messages detected.");
-    return null
+    return null;
   }
   const messages = response.data.map((row, i) => `(${i + 1}) ${row.content}`).join("/n")
-  console.log(`Previous messages retrieved: ${messages}`);
   return messages;
 }
 

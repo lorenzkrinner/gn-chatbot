@@ -12,7 +12,6 @@ export async function saveNewUser(phone: string, name: string) {
   }
 
   if (user) {
-    console.log("Existing user found: ", user?.user_phone);
     return Response.json(
       { message: `User found: ${user?.user_phone}`},
       { status: 200 }
@@ -34,7 +33,6 @@ export async function saveNewUser(phone: string, name: string) {
     );
   }
 
-  console.log("New user successfully created:", data);
   return Response.json(
     { message: "User successfully created" },
     { status: 200 }
@@ -66,7 +64,6 @@ export async function updateUser(phone: string) {
       { status: 500 }
     );
   } else {
-    console.log("User updated");
     return Response.json(
       { message: "User updated" },
       { status: 200 }

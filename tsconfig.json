@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
+    "target": "ES2022",
+    "module": "esnext",
+    "moduleResolution": "node",
     "outDir": "./dist",
     "rootDir": ".", 
     "strict": true,
@@ -16,6 +16,7 @@
   ],
   "exclude": [
     "src/**/*.spec.ts",
-    "node_modules"
+    "node_modules",
+    "dist"
   ]
 }

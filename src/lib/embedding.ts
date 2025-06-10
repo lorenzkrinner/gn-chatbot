@@ -23,8 +23,6 @@ const CHUNK_CHAR_LENGTH = 1000;
 
     if (error) {
       console.error("Supabase insert error:", error.message)
-    } else {
-      console.log("Chunk stored");
     }
   }
 })();
