@@ -19,6 +19,7 @@ app.use("/", (req, res, next) => {
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   console.error("/api/webhook error: ", err);
   res.status(500).send("Internal server error");
+  next();
 });
 
 export default serverless(app); 

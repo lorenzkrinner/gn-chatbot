@@ -8,8 +8,8 @@ const router = express.Router();
 
 router.get("/", (req: Request, res: Response) => {
   console.log("GET /webhook fired");
-  res.send("Webhook verifier OK");
-  // Verification if necessary
+  res.status(200).send("Webhook verifier OK");
+  return;
 });
 
 router.post("/", async(req: Request, res: Response) => {
@@ -29,7 +29,8 @@ router.post("/", async(req: Request, res: Response) => {
   await sendResponse(senderNumber, aiResponse);
   await updateUser(senderNumber);
 
-  res.sendStatus(200);
+  res.status(200).json({ message: "Response succesfully sent" });
+  return;
 });
 
 export default router;
