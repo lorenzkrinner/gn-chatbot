@@ -1,11 +1,8 @@
 {
   "name": "gn-chatbot",
+  "private": true,
   "version": "1.0.0",
-  "description": "A chatbot for Growth Nation, trained on 100s of Leo Fery's videos, docs, and coaching calls.",
-  "license": "ISC",
-  "author": "Lorenz Krinner",
   "type": "module",
-  "main": "api/index.ts",
   "scripts": {
     "vercel dev": "npx vercel dev",
     "dev": "tsx watch api/index.ts",

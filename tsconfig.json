@@ -11,11 +11,11 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": [
-    "../src/**/*.ts",
+    "src/**/*.ts",
     "api/**/*.ts"
-  ],
+, "api/index.js"  ],
   "exclude": [
-    "../src/**/*.spec.ts",
+    "src/**/*.spec.ts",
     "node_modules",
     "dist"
   ]

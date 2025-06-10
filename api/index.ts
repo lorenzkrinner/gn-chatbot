@@ -1,6 +1,11 @@
 import express, { type Response, type Request, type NextFunction } from "express";
 import cors from "cors";
 import serverless from "serverless-http";
+import { config as dotenvConfig } from "dotenv";
+
+dotenvConfig();
+
+const isDevelopment = false;
 
 import { sendResponse } from "../src/lib/twilio.js";
 import { storeMessage } from "../src/lib/supabase.js";
@@ -10,7 +15,10 @@ import { getOpenAIResponse } from "../src/lib/openai.js";
 export const app = express();
 
 app.use(cors({
-  origin: ["http://localhost:3001"]
+  origin: [
+    "http://localhost:4000", 
+    "https://gn-chatbot.vercel.app/"
+  ]
 }));
 
 app.use(express.urlencoded({ extended: true }));
@@ -86,3 +94,5 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
 app.listen(4000,() => {
   console.log("Server ready on port 4000.");
 });
+
+export default app;
