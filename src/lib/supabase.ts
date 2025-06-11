@@ -22,13 +22,6 @@ export async function getChunks(queryEmbedding: number[]) {
     return chunks;
 }
 
-export async function saveMessage(phone: string, text: string) {
-  return await supabase.from("messages").insert([{ 
-    phone_number: phone, 
-    content: text 
-  }]);
-}
-
 export async function retrievePreviousMessages(phone: string, count: number) {
   const response = await supabase
     .from("messages")
@@ -43,10 +36,11 @@ export async function retrievePreviousMessages(phone: string, count: number) {
   return messages;
 }
 
-export async function storeMessage(phone: string, message: string) {
+export async function storeMessage(phone: string, message: string, messageSid: string | null) {
   const response = supabase.from("messages").insert({
     "user_phone": phone,
-    "content": message
+    "content": message,
+    "mesage_sid": messageSid
   })
   return response;
 }

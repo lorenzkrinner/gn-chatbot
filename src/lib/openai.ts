@@ -1,6 +1,8 @@
 import { getInstructions } from "./instructions.js";
 import { getChunks, retrievePreviousMessages } from "./supabase.js";
 import { openai } from "../config.js";
+import { instructions } from "./instructions.js";
+import fs from "fs";
 
 export async function returnEmbedding(message: string) {
   if (!message || typeof message !== "string") {
@@ -17,7 +19,6 @@ export async function returnEmbedding(message: string) {
 
 export async function getOpenAIResponse(phone: string, message: string) {
   const count = 10
-  const instructions: string = getInstructions();
   console.log("Instructions retrieved");
   const embeddedQuery = await returnEmbedding(message);
   console.log("Embedding retrieved");
