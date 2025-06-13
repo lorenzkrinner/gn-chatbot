@@ -2,7 +2,6 @@ import fs from "fs";
 import path from "path";
 
 const instructionsPath = path.resolve(import.meta.dirname, "../../data/instructions.txt");
-console.log("Instructions path:", instructionsPath);
 
 export function getInstructions() {
   const instructions = fs.readFileSync(instructionsPath, "utf8");

@@ -26,7 +26,7 @@ app.use(express.json());
 
 // Add request logging middleware
 app.use((req: Request, res: Response, next: NextFunction) => {
-  console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
+  console.log(`${res.status} - ${new Date().toISOString()} - ${req.method} ${req.path}`);
   if (req.body?.error_code) {
     const errorCode: string = req.body.error_code;
     const errorMsg: string = req.body.Msg;
